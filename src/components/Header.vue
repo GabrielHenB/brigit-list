@@ -8,7 +8,7 @@
                     
                     <img class="mr-3 h-6 sm:h-9" src="https://pbs.twimg.com/media/FtZFMTOWcAcFSoM?format=jpg&name=360x360" alt="B">
                     
-                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">BentriGit</span>
+                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">BriGit List</span>
                 </a>
                 <div class="flex items-center lg:order-2">
                     <a href="#" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Bentricode</a>

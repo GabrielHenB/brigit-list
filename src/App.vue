@@ -16,7 +16,7 @@ import Header from './components/Header.vue';
   <footer class="m-0 the-footer">
     <div class="bg-red-600 flex justify-between items-center footer-container">
       <div class="ml-2 footer-logo">
-        <strong>Bentrigit </strong> - Seu portal para perfis do Github
+        <strong>BriGit List </strong> - Seu portal para perfis e repositórios do Github
       </div>
       <div class="m-4 pr-2 footer-details">
         <div class="grid grid-cols-2 grid-rows-2">
