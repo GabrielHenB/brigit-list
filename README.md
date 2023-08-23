@@ -1,6 +1,6 @@
 # BriGit List
 
-Brigit List is a personal Vue JS front-end application project that simply allows you to search for persons and thei repositories through Github's API. 
+Brigit List is a personal Vue JS front-end application project that simply allows you to search for persons and their repositories through Github's API. 
 Made to study and practice Vue JS .
 
 ## Recommended IDE Setup
