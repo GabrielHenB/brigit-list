@@ -1,6 +1,7 @@
-# bentrivue
+# BriGit List
 
-This template should help get you started developing with Vue 3 in Vite.
+Brigit List is a personal Vue JS front-end application project that simply allows you to search for persons and thei repositories through Github's API. 
+Made to study and practice Vue JS .
 
 ## Recommended IDE Setup
 
