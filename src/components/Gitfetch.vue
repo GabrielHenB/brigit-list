@@ -1,6 +1,8 @@
 <script setup>
 //Isso usa a Composition API
 import { reactive, computed } from 'vue';
+import UserCard from './UserCard.vue';
+import UserRepos from './UserRepos.vue';
 
 const reposAmount = computed(() => {
     //Isso sera cached e reactable
@@ -69,26 +71,15 @@ async function obterRepos(user){
         
         <div v-if="state.login !== ''" class="grid grid-cols-2">
             <section class="user-details">
-                <div class="bg-red-700 m-5 p-4 rounded">
-                    <div class="thumb">
-                        <img v-bind:src="state.avatarLink" class="mb-4 rounded border-4 border-black" alt="Thumb User">
-                    </div>
-                    <div class="desc bg-black mx-auto rounded">
-                        <strong>@{{ state.login }}</strong>
-                        <h1>{{ state.name }}</h1>
-                        <h1> {{ state.company }} </h1>
-                        <span> {{ state.bio }} </span>
-                    </div>
-                </div>
-                
+                <UserCard :avatarLink="state.avatarLink" :login="state.login" :name="state.name" :bio="state.bio" :company="state.company" />
             </section>
             <section v-if="state.repos.length > 0" >
                 <h1 class="small bg-red-700 m-2 p-2">O {{ state.name }} {{ reposAmount }}.</h1>
-                <article class="m-2 p-4 bg-black rounded" v-for="repository of state.repos">
-                    <h2 class="repos-name"><a :href="repository.html_url">{{ repository.full_name }}</a></h2>
-                    <p class="repos-desc">{{ repository.description }}</p>
-                    <a :href="repository.html_url" target="_blank">Leia Mais</a>
-                </article>
+                <UserRepos v-for="repository of state.repos" 
+                :html_url="repository.html_url"
+                :full_name="repository.full_name"
+                :description="repository.description" 
+                 />
             </section>
         </div> 
         <div class="mt-3 text-center" v-else>
@@ -116,32 +107,12 @@ async function obterRepos(user){
     </div>
 </template>
 
-<style>
+<style scoped>
 .top-title{
     font-family: Arial;
     font-size: 15pt;
     letter-spacing: 2pt;
     text-align: center;
     text-shadow: 1px black;
-}
-.desc{
-    text-align: center;
-}
-.repos-name{
-    font-size: 14pt;
-    font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
-    margin: 1px;
-}
-.repos-desc{
-    margin-left: 1px;
-}
-.thumb{
-    display: grid;
-    place-items: center;
-}
-.thumb img{
-    max-width: 300px;
-    width: 100%;
 }
 </style>
