@@ -84,11 +84,8 @@ async function obterRepos(user){
         </div> 
         <div class="mt-3 text-center" v-else>
             <div class="p-4 bg-red-500">
-                <h1 >404 - No momento não há perfil sendo exibido! Digite uma pesquisa!</h1>
-                
                 <img class="text-center w-52 mx-auto" src="https://media.tenor.com/gMJc9aJxtzYAAAAi/cry-menhera.gif" alt="404 Error">
-                
-                
+                <h1 >404 - No momento não há perfil sendo exibido! Digite uma pesquisa!</h1>
             </div>
             
             <div class="grid grid-cols-2">

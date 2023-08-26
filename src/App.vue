@@ -1,6 +1,5 @@
 <script setup>
-import Gitfetch from './components/Gitfetch.vue';
-//import Something from './components/Something.vue';
+//import Gitfetch from './components/Gitfetch.vue';
 import Header from './components/Header.vue';
 //import GitfetchOptions from './components/GitfetchOptions.vue';
 
@@ -9,9 +8,8 @@ import Header from './components/Header.vue';
 <template>
 
   <Header />
-  <div class="main-thing">
-    <Gitfetch />
-  </div>
+  
+  <RouterView></RouterView>
 
   <footer class="m-0 the-footer">
     <div class="bg-red-600 flex justify-between items-center footer-container">
@@ -20,10 +18,10 @@ import Header from './components/Header.vue';
       </div>
       <div class="m-4 pr-2 footer-details">
         <div class="grid grid-cols-2 grid-rows-2">
-          <div class="m-1 p-1"><a href="#">Home</a></div>
-          <div class="m-1 p-1"><a href="#">About</a></div>
-          <div class="m-1 p-1"><a href="#">Help</a></div>
-          <div class="m-1 p-1"><a href="#">Info</a></div>
+          <div class="m-1 p-1"><RouterLink to="/">Home</RouterLink></div>
+          <div class="m-1 p-1"><RouterLink to="/about">About</RouterLink></div>
+          <div class="m-1 p-1"><RouterLink to="/projs">Projects</RouterLink></div>
+          <div class="m-1 p-1"><RouterLink to="/help">Help</RouterLink></div>
         </div>
       </div>
     </div>
