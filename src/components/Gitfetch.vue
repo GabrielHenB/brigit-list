@@ -1,6 +1,7 @@
 <script setup>
 //Isso usa a Composition API
-import { reactive, computed } from 'vue';
+import { reactive, ref, computed, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import UserCard from './UserCard.vue';
 import UserRepos from './UserRepos.vue';
 
@@ -10,6 +11,8 @@ const reposAmount = computed(() => {
     return state.repos.length > 0 ? `Possui ${state.repos.length} repositórios públicos` : "não possui repositorios publicos no momento";
 });
 
+const route = useRoute();
+
 const state = reactive({
     name: 'Sr Empaminondas',
     login: '',
@@ -17,11 +20,19 @@ const state = reactive({
     company: 'Something',
     avatarLink: 'https://pm1.aminoapps.com/7837/40ede1286422984800a766685e2e3a4f09d93102r1-778-801v2_00.jpg',
     repos: [],
-    searchInput: ''
+    searchInput: (route.params.id) ? route.params.id : ''
 });
 
-async function obterUser(evento){
-            evento.preventDefault();
+const errorContainer = ref('');
+
+function handleForm(evento){
+    evento.preventDefault();
+    state.login = ''; //melhorar depois isso aqui
+    obterUser();
+}
+
+async function obterUser(){
+            //evento.preventDefault();
             try{
                 const response = await fetch(`https://api.github.com/users/${state.searchInput}`);
 
@@ -42,6 +53,8 @@ async function obterUser(evento){
                 }
             }catch(error){
                 console.log(error);
+                errorContainer.value = error.message;
+                //console.log(errorContainer);
             }
             
 }
@@ -56,15 +69,20 @@ async function obterRepos(user){
     }
 }
 
+onMounted(() => {
+    //Roda quando o componente eh montado.
+    if(state.searchInput !== '') obterUser();
+});
+
 </script>
 <template>
     <div class="mx-auto px-4">
         <h2 class="m-2 top-title">Superobtenedor de Dados Github</h2>
 
         <div class="text-center right-0">
-            <form action="" @submit="obterUser" class="gitform">
+            <form action="" @submit="handleForm" class="gitform">
                 <input class="w-600" type="text" v-model="state.searchInput">
-                <button v-on:click="obterUser">Buscar Usuario</button>
+                <button v-on:click="handleForm">Buscar Usuario</button>
             </form>
         </div>
         
@@ -83,9 +101,14 @@ async function obterRepos(user){
             </section>
         </div> 
         <div class="mt-3 text-center" v-else>
-            <div class="p-4 bg-red-500">
+            <div class="p-4 bg-red-500" v-if="errorContainer.length > 0">
                 <img class="text-center w-52 mx-auto" src="https://media.tenor.com/gMJc9aJxtzYAAAAi/cry-menhera.gif" alt="404 Error">
-                <h1 >404 - No momento não há perfil sendo exibido! Digite uma pesquisa!</h1>
+                <h1 >Ocorreu um erro durante a pesquisa!</h1>
+                <p>{{ errorContainer }}</p>
+            </div>
+            <div class="p-4 bg-red-500" v-else>
+                <img class="text-center w-52 mx-auto" src="https://media.tenor.com/jsIerQKVQaUAAAAi/slap-table.gif" alt="404 Error">
+                <h1 >No momento não há perfil sendo exibido! Digite uma pesquisa!</h1>
             </div>
             
             <div class="grid grid-cols-2">
